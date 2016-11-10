@@ -9,8 +9,8 @@ for field in 100 #316 3162 1000 9999
 do
 
 
-grep "${Type}"_"${dir}"p0.log "${file}" > "${Type}"_"${dir}"p0.txt
-grep "${Type}"_"${dir}"p"${field}".log "${file}" > "${Type}"_"${dir}"p"${field}".txt
+grep "${Type}"_.p0.log "${file}" > "${Type}"_p0.txt
+grep "${Type}"_.p"${field}".log "${file}" > "${Type}"_p"${field}".txt
 
 python ../Calculate_epsilon.py "${Type}"_"${dir}"p"${field}".txt "${Type}"_"${dir}"p0.txt
    

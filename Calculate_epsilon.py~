@@ -63,6 +63,7 @@ DM_0=np.diag(all_data_0[:,1:4])*D
 
 P_field=DM_field/Vol
 P_0=DM_0/Vol
+#P_0=[0,0,0]
 
 print P_field
 print P_0

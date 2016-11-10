@@ -54,12 +54,16 @@ Vol = 670.423*10**-30   # m^3
 
 Field = all_data_field[:,0]*0.0001*5.14220652*10**11        # V/m
 
+Field=np.diag(Field)
+
 print Field
 
 # Make polarisation tensor
 
-DM_field=np.diag(all_data_field[:,1:4])*D
-DM_0=np.diag(all_data_0[:,1:4])*D
+print all_data_field[:,1:4]
+
+DM_field=all_data_field[:,1:4]*D
+DM_0=all_data_0[:,1:4]*D
 
 P_field=DM_field/Vol
 P_0=DM_0/Vol
@@ -74,7 +78,7 @@ eps=np.zeros((3,3))
 
 for i in range(0,3):
     for j in range(0,3):
-		eps[i,j] = (4*np.pi/eps0)*(P_field[i]-P_0[i])/Field[j]
+		eps[i,j] += (4*np.pi/eps0)*(P_field[i,j]-P_0[i,j])/Field[i,i]
 
 print "High freq eps: ", eps
 

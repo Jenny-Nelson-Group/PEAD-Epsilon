@@ -12,12 +12,12 @@ do
 grep "${Type}"_.p0.log "${file}" > "${Type}"_p0.txt
 grep "${Type}"_.p"${field}".log "${file}" > "${Type}"_p"${field}".txt
 
-if [ "$Type" = "C60" ]
+if [ "$Type" -eq "C60" ];
 then
 vol=670.423
 fi
 
-if [ "$Type" = "PCBM" ]
+if [ "$Type" -eq "PCBM" ];
 then
 vol=937.183
 fi

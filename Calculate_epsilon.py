@@ -18,13 +18,11 @@ with open(sys.argv[1],'r') as f:
 		if not checkline:
 			strings = re.findall(r"[-+]?\d*\.\d+|\d+",line)
 			data = [float(i) for i in strings]
-			print data
 			if data[0]==60.0:
 				data.remove(60.0)
 			all_data_field[j,:]=data
 			j+=1
 
-print all_data_field
 
 k=0
 
@@ -39,7 +37,6 @@ with open(sys.argv[2],'r') as f:
 			all_data_0[k,:]=data
 			k+=1
 
-print all_data_0
 
 # Define constants and conversion factors
 
@@ -48,7 +45,7 @@ D = 3.33564*10**-30     # Debye in C.m
 
 # Volume of molecule
 
-Vol = 670.423*10**-30   # m^3
+Vol = float(sys.argv[3])*10**-30   # m^3
 
 # Calculate field in V/m
 
@@ -56,11 +53,9 @@ Field = all_data_field[:,0]*0.0001*5.14220652*10**11        # V/m
 
 Field=np.diag(Field)
 
-print Field
+print "Field: ", Field
 
 # Make polarisation tensor
-
-print all_data_field[:,1:4]
 
 DM_field=all_data_field[:,1:4]*D
 DM_0=all_data_0[:,1:4]*D
@@ -68,8 +63,8 @@ DM_0=all_data_0[:,1:4]*D
 P_field=DM_field/Vol
 P_0=DM_0/Vol
 
-print P_field
-print P_0
+print "P with field: ", P_field
+print "P without field: ", P_0
 
 
 # Calculate epsilon
@@ -78,7 +73,9 @@ eps=np.zeros((3,3))
 
 for i in range(0,3):
     for j in range(0,3):
-		eps[i,j] += (4*np.pi/eps0)*(P_field[i,j]-P_0[i,j])/Field[i,i]
+		eps[i,j] += (1/eps0)*(P_field[i,j]-P_0[i,j])/Field[i,i]
+
+eps=np.identity(3)+np.absolute(eps)
 
 print "High freq eps: ", eps
 

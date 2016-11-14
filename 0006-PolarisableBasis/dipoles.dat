@@ -1,0 +1,35 @@
+C60_xp0.log: Dipole moment (field-independent basis, Debye):
+C60_xp0.log-    X=              0.0001    Y=             -0.0001    Z=              0.0001  Tot=              0.0002
+--
+C60_xp0.log: Dipole moment (field-independent basis, Debye):
+C60_xp0.log-    X=              0.0000    Y=              0.0000    Z=              0.0000  Tot=              0.0000
+--
+C60_xp100.log: Dipole moment (field-independent basis, Debye):
+C60_xp100.log-    X=            -13.9663    Y=             -0.0002    Z=              0.0003  Tot=             13.9663
+--
+C60_xp100.log: Dipole moment (field-independent basis, Debye):
+C60_xp100.log-    X=            -14.0491    Y=              0.0102    Z=             -0.0079  Tot=             14.0491
+--
+C60_yp100.log: Dipole moment (field-independent basis, Debye):
+C60_yp100.log-    X=              0.0000    Y=            -13.9656    Z=             -0.0002  Tot=             13.9656
+--
+C60_zp100.log: Dipole moment (field-independent basis, Debye):
+C60_zp100.log-    X=              0.0003    Y=             -0.0004    Z=            -13.9637  Tot=             13.9637
+--
+MonoPCBM_xp0.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_xp0.log-    X=             -4.0506    Y=             -0.5609    Z=             -0.4822  Tot=              4.1176
+--
+MonoPCBM_xp0.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_xp0.log-    X=             -3.9381    Y=             -0.5650    Z=             -0.4642  Tot=              4.0054
+--
+MonoPCBM_xp100.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_xp100.log-    X=            -25.0362    Y=              0.4522    Z=             -0.3783  Tot=             25.0431
+--
+MonoPCBM_xp100.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_xp100.log-    X=            -27.7330    Y=              0.5887    Z=             -0.7994  Tot=             27.7508
+--
+MonoPCBM_yp100.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_yp100.log-    X=             -3.1218    Y=            -17.8683    Z=             -0.5186  Tot=             18.1463
+--
+MonoPCBM_yp100.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_yp100.log-    X=             -3.0386    Y=            -18.3181    Z=             -0.2750  Tot=             18.5704

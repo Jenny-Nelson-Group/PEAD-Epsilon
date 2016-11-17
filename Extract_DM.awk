@@ -1,25 +1,39 @@
 #!/bin/awk -f
 
-BEGIN{j=0}
+# Looks like:
+#  Dipole moment (field-independent basis, Debye):
+#      X=             -4.2612    Y=             -0.2186    Z=            -17.4410  Tot=             17.9553
 
+BEGIN{count=0}
 {
 
-if ($1=="Dipole" && $2=="moment") {
+    if ($1=="Dipole" && $2=="moment") {
+        getline
+        if (count==0)
+            { ux=$2; uy=$4; uz=$6}
+        else
+            { rx=$2; ry=$4; rz=$6}
+        count++
+#        print $2, $4, $6
+    }
 
-getline
+# Looks like:
+#  The following finite field(s) will be applied:
+#   An electric field of              0.0000  0.0000  0.0100
 
-print $2, $4, $6
 
+# This triggers for every SCF, but it does not matter
+    if ($1=="An" && $2="electric" && $3="field"){ 
+        fx=$5
+        fy=$6
+        fz=$7
+#        print fx,fy,fz
+    }
 }
 
-if ($5=="Field="){ 
-print substr($0,1,2)}
-
-#print $field
-
+END{
+    print fx,fy,fz,ux,uy,uz,rx,ry,rz
 }
-
-
 
 
 #BEGIN{ 

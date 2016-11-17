@@ -14,12 +14,12 @@ grep "${Type}"_.p"${field}".log "${file}" > "${Type}"_p"${field}".txt
 
 if [ "$Type" = "C60" ]
 then
-vol=670.423
+vol=711
 fi
 
 if [ "$Type" = "PCBM" ]
 then
-vol=937.183
+vol=927.175
 fi
 
 python ../Calculate_epsilon.py "${Type}"_"${dir}"p"${field}".txt "${Type}"_"${dir}"p0.txt $vol

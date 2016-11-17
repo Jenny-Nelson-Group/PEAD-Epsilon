@@ -6,37 +6,11 @@ import numpy as np
 import re
 import sys
 
-all_data_field=np.zeros((3,5))
-all_data_0=np.zeros((3,5))
-
-j=0
 
 # Read in and process log file to extract floats (and ignore 60 from C60)
-with open(sys.argv[1],'r') as f:
-	for line in f:
-		checkline=re.search('Dipole moment',line)
-		if not checkline:
-			strings = re.findall(r"[-+]?\d*\.\d+|\d+",line)
-			data = [float(i) for i in strings]
-			if data[0]==60.0:
-				data.remove(60.0)
-			all_data_field[j,:]=data
-			j+=1
+data=np.loadtxt(sys.argv[1])
 
-
-k=0
-
-with open(sys.argv[2],'r') as f:
-	for line in f:
-		checkline=re.search('Dipole moment',line)
-		if not checkline:
-			strings = re.findall(r"[-+]?\d*\.\d+|\d+",line)
-			data = [float(i) for i in strings]
-			if data[0]==60.0:
-				data.remove(60.0)
-			all_data_0[k,:]=data
-			k+=1
-
+print data
 
 # Define constants and conversion factors
 
@@ -45,43 +19,49 @@ D = 3.33564*10**-30     # Debye in C.m
 
 # Volume of molecule
 
-Vol = float(sys.argv[3])*10**-30   # m^3
+Vol = float(sys.argv[2])*10**-30   # m^3
 
 # Calculate field in V/m
 
-Field = all_data_field[:,0]*0.0001*5.14220652*10**11        # V/m
-
-Field=np.diag(Field)
+Field = data[0:3,0:3]*5.14220652*10**11        # V/m
 
 print "Field: ", Field
 
 # Make polarisation tensor
 
-DM_field=all_data_field[:,1:4]*D
-DM_0=all_data_0[:,1:4]*D
+DM_field_stat=data[0:3,6:9]*D
+DM_field_inf=data[0:3,3:6]*D
 
-P_field=DM_field/Vol
-P_0=DM_0/Vol
+P_field_inf=DM_field_inf/Vol
+P_field_stat=DM_field_stat/Vol
 
-print "P with field: ", P_field
-print "P without field: ", P_0
-
+print "P with field, unrelaxed: ", P_field_inf
+print "P with field, relaxed: ", P_field_stat
 
 # Calculate epsilon
 
-eps=np.zeros((3,3))
+eps_inf=np.zeros((3,3))
+eps_stat=np.zeros((3,3))
+
 
 for i in range(0,3):
     for j in range(0,3):
-		eps[i,j] += (1/eps0)*(P_field[i,j]-P_0[i,j])/Field[i,i]
+		eps_inf[i,j] += (1/eps0)*(P_field_inf[i,j])/Field[i,i]
 
-eps=np.identity(3)+np.absolute(eps)
+for i in range(0,3):
+    for j in range(0,3):
+        eps_stat[i,j] += (1/eps0)*(P_field_stat[i,j])/Field[i,i]
 
-print "High freq eps: ", eps
+eps_inf=np.identity(3)+np.absolute(eps_inf)
+eps_stat=np.identity(3)+np.absolute(eps_stat)
 
-print "Trace/3: ", np.trace(eps)/3
+print "High freq eps: ", eps_inf
+print "Static eps: ", eps_stat
 
-
+evals,evecs = np.linalg.eig(eps_inf)
+evals_s,evecs_s = np.linalg.eig(eps_stat)
+print sum(evals)/3
+print sum(evals_s)/3
 
 
 

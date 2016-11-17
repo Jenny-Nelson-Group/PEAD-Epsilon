@@ -1,3 +1,9 @@
+C60_xm10.log: Dipole moment (field-independent basis, Debye):
+C60_xm10.log-    X=              1.3912    Y=             -0.0001    Z=              0.0001  Tot=              1.3912
+--
+C60_xm10.log: Dipole moment (field-independent basis, Debye):
+C60_xm10.log-    X=              1.4008    Y=             -0.0057    Z=             -0.0040  Tot=              1.4008
+--
 C60_xp0.log: Dipole moment (field-independent basis, Debye):
 C60_xp0.log-    X=              0.0001    Y=             -0.0001    Z=              0.0001  Tot=              0.0002
 --
@@ -10,11 +16,41 @@ C60_xp100.log-    X=            -13.9663    Y=             -0.0002    Z=        
 C60_xp100.log: Dipole moment (field-independent basis, Debye):
 C60_xp100.log-    X=            -14.0491    Y=              0.0102    Z=             -0.0079  Tot=             14.0491
 --
+C60_xp10.log: Dipole moment (field-independent basis, Debye):
+C60_xp10.log-    X=             -1.3909    Y=             -0.0001    Z=              0.0001  Tot=              1.3909
+--
+C60_xp10.log: Dipole moment (field-independent basis, Debye):
+C60_xp10.log-    X=             -1.4003    Y=             -0.0022    Z=             -0.0042  Tot=              1.4003
+--
+C60_ym10.log: Dipole moment (field-independent basis, Debye):
+C60_ym10.log-    X=              0.0001    Y=              1.3909    Z=              0.0002  Tot=              1.3909
+--
+C60_ym10.log: Dipole moment (field-independent basis, Debye):
+C60_ym10.log-    X=             -0.0011    Y=              1.3927    Z=              0.0073  Tot=              1.3927
+--
 C60_yp100.log: Dipole moment (field-independent basis, Debye):
 C60_yp100.log-    X=              0.0000    Y=            -13.9656    Z=             -0.0002  Tot=             13.9656
 --
+C60_yp10.log: Dipole moment (field-independent basis, Debye):
+C60_yp10.log-    X=              0.0001    Y=             -1.3911    Z=              0.0001  Tot=              1.3911
+--
+C60_yp10.log: Dipole moment (field-independent basis, Debye):
+C60_yp10.log-    X=              0.0010    Y=             -1.3927    Z=             -0.0073  Tot=              1.3927
+--
+C60_zm10.log: Dipole moment (field-independent basis, Debye):
+C60_zm10.log-    X=              0.0001    Y=              0.0000    Z=              1.3909  Tot=              1.3909
+--
+C60_zm10.log: Dipole moment (field-independent basis, Debye):
+C60_zm10.log-    X=              0.0039    Y=              0.0019    Z=              1.3987  Tot=              1.3987
+--
 C60_zp100.log: Dipole moment (field-independent basis, Debye):
 C60_zp100.log-    X=              0.0003    Y=             -0.0004    Z=            -13.9637  Tot=             13.9637
+--
+C60_zp10.log: Dipole moment (field-independent basis, Debye):
+C60_zp10.log-    X=              0.0002    Y=             -0.0001    Z=             -1.3907  Tot=              1.3907
+--
+C60_zp10.log: Dipole moment (field-independent basis, Debye):
+C60_zp10.log-    X=             -0.0040    Y=             -0.0019    Z=             -1.3986  Tot=              1.3986
 --
 MonoPCBM_xp0.log: Dipole moment (field-independent basis, Debye):
 MonoPCBM_xp0.log-    X=             -4.0506    Y=             -0.5609    Z=             -0.4822  Tot=              4.1176
@@ -33,3 +69,9 @@ MonoPCBM_yp100.log-    X=             -3.1218    Y=            -17.8683    Z=   
 --
 MonoPCBM_yp100.log: Dipole moment (field-independent basis, Debye):
 MonoPCBM_yp100.log-    X=             -3.0386    Y=            -18.3181    Z=             -0.2750  Tot=             18.5704
+--
+MonoPCBM_zp100.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_zp100.log-    X=             -3.9659    Y=             -0.5924    Z=            -16.7858  Tot=             17.2581
+--
+MonoPCBM_zp100.log: Dipole moment (field-independent basis, Debye):
+MonoPCBM_zp100.log-    X=             -4.2612    Y=             -0.2186    Z=            -17.4410  Tot=             17.9553

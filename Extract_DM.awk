@@ -4,7 +4,10 @@
 #  Dipole moment (field-independent basis, Debye):
 #      X=             -4.2612    Y=             -0.2186    Z=            -17.4410  Tot=             17.9553
 
-BEGIN{count=0}
+BEGIN{
+    count=0
+    fx=fy=fz=0.0 # Catches case where no E-field set
+}
 {
 
     if ($1=="Dipole" && $2=="moment") {

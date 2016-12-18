@@ -1,4 +1,11 @@
-# Really primitive, but it works!
-# Grep the "Dipole moment" line and provide +1 line of context
+rm MonoPCBM.dat C60.dat
 
-grep "Dipole moment" -A1 *.log | tee dipoles.dat
+for i in C60_*.log
+do
+ awk -f ../Extract_DM.awk "${i}" >> C60.dat
+done
+
+for i in MonoPCBM_*.log
+do
+ awk -f ../Extract_DM.awk "${i}" >> MonoPCBM.dat
+done

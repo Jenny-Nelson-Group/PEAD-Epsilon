@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+
+# Calculate the high frequency (optical) and static dielectric constants given Dipole moments from a Gaussian log file
+
+import numpy as np
+import re
+import sys
+
+
+# Read in and process log file to extract floats (and ignore 60 from C60)
+data=np.loadtxt(sys.argv[1])
+
+print data
+
+# Define number of rows
+
+N = len(data)
+
+# Define constants and conversion factors
+
+eps0 = 8.854187817620*10**-12    # C/Vm
+D = 3.33564*10**-30     # Debye in C.m
+
+# Volume of molecule
+
+Vol = float(sys.argv[2])*10**-30   # m^3
+
+
+# Iterate over rows to find matching field strength in x, y and z directions, and the zero field limits
+
+P_field_inf=np.zeros((1,3,3))
+P_field_stat=np.zeros((1,3,3))
+Field=np.zeros((1,3,3))
+
+for i in range(0,N):
+    if data[i,0]==0 and data[i,1]==0 and data[i,2]==0:
+        P_field_inf0=np.diag(data[i,3:6])*D/Vol
+        P_field_stat0=np.diag(data[i,6:9])*D/Vol
+    for j in range(0,N):
+        for k in range(0,N):
+            if data[i,0]!=0.0000 and data[i,0]==data[j,1] and data[i,0]==data[k,2]:
+                P_field_inf=np.vstack((P_field_inf,D*(np.array([[data[i,3],data[j,3],data[k,3]],[data[i,4],data[j,4],data[k,4]],[data[i,5],data[j,5],data[k,5]]]))[None,...]/Vol))
+                P_field_stat=np.vstack((P_field_inf,D*(np.array([[data[i,6],data[j,6],data[k,6]],[data[i,7],data[j,7],data[k,7]],[data[i,8],data[j,8],data[k,8]]]))[None,...]/Vol))
+                Field=np.vstack((Field,np.array([[data[i,0],0,0],[0,data[j,1],0],[0,0,data[k,2]]])[None,...]*5.14220652*10**11))        # V/m
+
+
+# Remove initialising zeros
+
+P_field_inf=P_field_inf[1:,:,:]
+P_field_stat=P_field_stat[1:,:,:]
+Field=Field[1:,:,:]
+
+
+print "P with field, unrelaxed: ", P_field_inf
+print "P with field, relaxed: ", P_field_stat
+
+print "Field", Field
+
+# Calculate epsilon
+
+eps_inf=np.zeros((3,3))
+eps_stat=np.zeros((3,3))
+
+
+for i in range(0,3):
+    for j in range(0,3):
+		eps_inf[i,j] = (1/eps0)*(P_field_inf[0,i,j]-P_field_inf0[i,j])/Field[0,j,j]
+
+for i in range(0,3):
+    for j in range(0,3):
+        eps_stat[i,j] = (1/eps0)*(P_field_stat[0,i,j]-P_field_stat0[i,j])/Field[0,j,j]
+
+eps_inf=np.identity(3)+np.absolute(eps_inf)
+eps_stat=np.identity(3)+np.absolute(eps_stat)
+
+print "With field: ", Field[0,:,:]
+print "High freq eps: ", eps_inf
+print "Static eps: ", eps_stat
+
+evals,evecs = np.linalg.eig(eps_inf)
+evals_s,evecs_s = np.linalg.eig(eps_stat)
+print sum(evals)/3
+print sum(evals_s)/3
+
+
+
+

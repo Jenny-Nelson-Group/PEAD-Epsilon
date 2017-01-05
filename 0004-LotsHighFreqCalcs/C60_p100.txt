@@ -1,0 +1,6 @@
+C60_xp100.log: Dipole moment (field-independent basis, Debye):
+C60_xp100.log-    X=            -11.9271    Y=             -0.0001    Z=              0.0002  Tot=             11.9271
+C60_yp100.log: Dipole moment (field-independent basis, Debye):
+C60_yp100.log-    X=              0.0001    Y=            -11.9267    Z=              0.0000  Tot=             11.9267
+C60_zp100.log: Dipole moment (field-independent basis, Debye):
+C60_zp100.log-    X=              0.0001    Y=             -0.0002    Z=            -11.9249  Tot=             11.9249

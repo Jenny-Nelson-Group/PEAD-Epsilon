@@ -61,26 +61,42 @@ print "Field", Field
 eps_inf=np.zeros((3,3))
 eps_stat=np.zeros((3,3))
 
+all_eps_inf=[]
+all_eps_stat=[]
+field=[]
 
-for i in range(0,3):
-    for j in range(0,3):
-		eps_inf[i,j] = (1/eps0)*(P_field_inf[0,i,j]-P_field_inf0[i,j])/Field[0,j,j]
+for f in range(len(Field)):
+	for i in range(0,3):
+		for j in range(0,3):
+			eps_inf[i,j] = (1/eps0)*(P_field_inf[f,i,j]-P_field_inf0[i,j])/Field[f,j,j]
+	eps_inf=np.identity(3)+eps_inf
+	evals,evecs = np.linalg.eig(eps_inf)
+	print "With field: ", Field[f,:,:]
+	print "High freq eps: ", eps_inf
+	print sum(evals)/3
+	field=np.append(field,Field[f,0,0])
+	all_eps_inf=np.append(all_eps_inf,sum(evals)/3)
+			
 
-for i in range(0,3):
-    for j in range(0,3):
-        eps_stat[i,j] = (1/eps0)*(P_field_stat[0,i,j]-P_field_stat0[i,j])/Field[0,j,j]
+for f in range(len(Field)):
+	for i in range(0,3):
+		for j in range(0,3):
+			eps_stat[i,j] = (1/eps0)*(P_field_stat[f,i,j]-P_field_stat0[i,j])/Field[f,j,j]
+	eps_stat=np.identity(3)+eps_stat
+	evals,evecs = np.linalg.eig(eps_stat)
+	print "With field: ", Field[f,:,:]
+	print "Static eps: ", eps_stat
+	print sum(evals)/3
+	all_eps_stat=np.append(all_eps_stat,sum(evals)/3)
 
-eps_inf=np.identity(3)+np.absolute(eps_inf)
-eps_stat=np.identity(3)+np.absolute(eps_stat)
+print "Field: ", field
+print "Eps inf: ", all_eps_inf
+print "Eps stat: ", all_eps_stat
 
-print "With field: ", Field[0,:,:]
-print "High freq eps: ", eps_inf
-print "Static eps: ", eps_stat
 
-evals,evecs = np.linalg.eig(eps_inf)
-evals_s,evecs_s = np.linalg.eig(eps_stat)
-print sum(evals)/3
-print sum(evals_s)/3
+
+
+
 
 
 
